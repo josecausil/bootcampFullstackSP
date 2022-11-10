@@ -1,19 +1,17 @@
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
 
 public class Main {
-
  
  public static void main(String[] args){
-
-
     Scanner entrada = new Scanner(System.in);
     ArrayList<Cliente> listaNumber ;
     String numero;
     boolean value;
     int opcion=0;
     listaNumber = new ArrayList<Cliente>();
+
     do{
     System.out.println("*****Menu*****");
     System.out.println("1) Generar numero tipo A (54)");
@@ -22,20 +20,11 @@ public class Main {
     System.out.println("4) salir");
     System.out.println("  Eliga una opcion");
     opcion = entrada.nextInt();
-    
-   
-
-    //numero = Challenge1.generateNumber("A");
-    //System.out.println();
-    //listaNumber.add(Challenge1.Generate());
-
-   
-
    
     switch (opcion) {
 
         case 1:
-        numero = "2";
+        numero = Challenge1.generateCliente("A").toString();
         value = Challenge1.assign(numero, listaNumber);
        
         if(value==false){
