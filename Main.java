@@ -24,7 +24,7 @@ public class Main {
     switch (opcion) {
 
         case 1:
-        numero = "2";
+        numero =  Challenge1.generateCliente("A").toString();
         value = Challenge1.assignNumber(numero, listaNumber);
        
         if(value==false){
