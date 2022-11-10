@@ -24,7 +24,7 @@ public class Challenge1 {
     }
 
     
-    public static boolean assign (String num,List <Cliente> listaNumber){
+    public static boolean assignNumber (String num,List <Cliente> listaNumber){
         boolean available=false;
         
         for(int i=0;i < listaNumber.size();i++){
