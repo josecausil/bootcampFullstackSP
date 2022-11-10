@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Challenge1 {
@@ -23,7 +24,7 @@ public class Challenge1 {
     }
 
     
-    public static boolean assign (String num,ArrayList <Cliente> listaNumber){
+    public static boolean assign (String num,List <Cliente> listaNumber){
         boolean available=false;
         
         for(int i=0;i < listaNumber.size();i++){
