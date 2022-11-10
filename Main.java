@@ -24,8 +24,8 @@ public class Main {
     switch (opcion) {
 
         case 1:
-        numero = Challenge1.generateCliente("A").toString();
-        value = Challenge1.assign(numero, listaNumber);
+        numero = "2";
+        value = Challenge1.assignNumber(numero, listaNumber);
        
         if(value==false){
             Cliente c = new Cliente(numero);
@@ -39,7 +39,7 @@ public class Main {
         break;
         case 2:
         numero = Challenge1.generateCliente("B").toString(); 
-        value = Challenge1.assign(numero, listaNumber);
+        value = Challenge1.assignNumber(numero, listaNumber);
       
         if(value==false){
             Cliente c = new Cliente(numero);
