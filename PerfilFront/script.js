@@ -1,13 +1,7 @@
 var firmacount = 0;
     $(document).ready(function(){
         
-        
-        $(function(){
-          // get hash value
-          var hash = window.location.hash;
-          // now scroll to element with that id
-          $('html, body').animate({ scrollTop: $(hash).offset().top });
-        });
+    
         
         var altura = $(".body").height();
         var ancho = $(".body").width();
