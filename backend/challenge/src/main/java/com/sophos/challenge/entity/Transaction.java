@@ -1,22 +1,20 @@
 package com.sophos.challenge.entity;
 
-import java.sql.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.time.LocalDate;
+
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "transaction")
 public class Transaction {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idTransaction;
-    private Date transactionDate;
+
+    private LocalDate transactionDate;
     private String typeTransaction;
     private String Description;
     private int valueTransfer;
@@ -24,10 +22,17 @@ public class Transaction {
     private int balance;
     private int availableBalance;
 
+    @ManyToOne
+    @JoinColumn(name = "idAccount")
+    private Product product;
+
 
     
-    public Transaction(int idTransaction, Date transactionDate, String typeTransaction, String description,
-            int valueTransfer, String movementType, int balance, int availableBalance) {
+    public Transaction() {
+    }
+    
+    public Transaction(int idTransaction, LocalDate transactionDate, String typeTransaction, String description,
+            int valueTransfer, String movementType, int balance, int availableBalance, Product product) {
         this.idTransaction = idTransaction;
         this.transactionDate = transactionDate;
         this.typeTransaction = typeTransaction;
@@ -36,6 +41,7 @@ public class Transaction {
         this.movementType = movementType;
         this.balance = balance;
         this.availableBalance = availableBalance;
+        this.product = product;
     }
     public int getIdTransaction() {
         return idTransaction;
@@ -43,10 +49,10 @@ public class Transaction {
     public void setIdTransaction(int idTransaction) {
         this.idTransaction = idTransaction;
     }
-    public Date getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return transactionDate;
     }
-    public void setTransactionDate(Date transactionDate) {
+    public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
     public String getTypeTransaction() {
@@ -84,6 +90,14 @@ public class Transaction {
     }
     public void setAvailableBalance(int availableBalance) {
         this.availableBalance = availableBalance;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 

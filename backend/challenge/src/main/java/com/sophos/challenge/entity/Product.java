@@ -1,40 +1,50 @@
 package com.sophos.challenge.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "product")
 public class Product {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idAccount;
-    private String TypeAccount;
+
+    private String typeAccount;
     private int accountNumber;
     private String accountStatus;
     private int balance;
     private int availableBalance;
-    private String exemptGMF;
-    private Date createDate;
+    private boolean exemptGMF;
+    private LocalDate createDate;
     private String createUser;
-    private Date modificationDate;
+    private LocalDate modificationDate;
     private String modificationUser;
 
+    @ManyToOne
+    @JoinColumn(name = "idCustomer")
+    private Customer customer;
 
+ 
 
     
+    public Product() {
+    }
+
+   // public Product( String typeAccount,int balance,int availableBalance,boolean exemptGMF){
+
+    //}
+
+
     public Product(int idAccount, String typeAccount, int accountNumber, String accountStatus, int balance,
-            int availableBalance, String exemptGMF, Date createDate, String createUser, Date modificationDate,
-            String modificationUser) {
+            int availableBalance, boolean exemptGMF, LocalDate createDate, String createUser, LocalDate modificationDate,
+            String modificationUser, Customer customer) {
         this.idAccount = idAccount;
-        TypeAccount = typeAccount;
+        this.typeAccount = typeAccount;
         this.accountNumber = accountNumber;
         this.accountStatus = accountStatus;
         this.balance = balance;
@@ -44,6 +54,7 @@ public class Product {
         this.createUser = createUser;
         this.modificationDate = modificationDate;
         this.modificationUser = modificationUser;
+        this.customer = customer;
     }
 
     public int getIdAccount() {
@@ -53,10 +64,10 @@ public class Product {
         this.idAccount = idAccount;
     }
     public String getTypeAccount() {
-        return TypeAccount;
+        return typeAccount;
     }
     public void setTypeAccount(String typeAccount) {
-        TypeAccount = typeAccount;
+        this.typeAccount = typeAccount;
     }
     public int getAccountNumber() {
         return accountNumber;
@@ -82,16 +93,16 @@ public class Product {
     public void setAvailableBalance(int availableBalance) {
         this.availableBalance = availableBalance;
     }
-    public String getExemptGMF() {
+    public boolean getExemptGMF() {
         return exemptGMF;
     }
-    public void setExemptGMF(String exemptGMF) {
+    public void setExemptGMF(boolean exemptGMF) {
         this.exemptGMF = exemptGMF;
     }
-    public Date getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
     public String getCreateUser() {
@@ -100,10 +111,10 @@ public class Product {
     public void setCreateUser(String createUser) {
         this.createUser = createUser;
     }
-    public Date getModificationDate() {
+    public LocalDate getModificationDate() {
         return modificationDate;
     }
-    public void setModificationDate(Date modificationDate) {
+    public void setModificationDate(LocalDate modificationDate) {
         this.modificationDate = modificationDate;
     }
     public String getModificationUser() {
@@ -111,6 +122,14 @@ public class Product {
     }
     public void setModificationUser(String modificationUser) {
         this.modificationUser = modificationUser;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 
