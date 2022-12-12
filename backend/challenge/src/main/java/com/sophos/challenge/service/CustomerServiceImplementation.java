@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sophos.challenge.data.DateCalculator;
 import com.sophos.challenge.entity.Customer;
 import com.sophos.challenge.repository.CustomerRepository;
 
@@ -17,7 +18,15 @@ public class CustomerServiceImplementation implements CustomerService {
 
     @Override
     public Customer createCustomer(Customer customer){
-        return customerRepository.save(customer);
+        boolean result = DateCalculator.adult(customer);
+        if(result==true){
+            return customerRepository.save(customer);
+            
+        }else{
+            //se debe retornar error
+            return null; 
+        }
+        
     }
 
     @Override
@@ -31,6 +40,8 @@ public class CustomerServiceImplementation implements CustomerService {
     }
 
     public boolean deleteCustomerById(int idCustomer){
+
+        
         return getCustomerById(idCustomer).map(customer ->{
             customerRepository.deleteById(idCustomer);
             return true;

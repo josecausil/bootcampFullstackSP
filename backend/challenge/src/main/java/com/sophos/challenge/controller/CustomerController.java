@@ -40,18 +40,9 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestParam String identificationType, 
-                                                   @RequestParam int identificationNumber,
-                                                   @RequestParam String names, 
-                                                   @RequestParam String lastName,
-                                                   @RequestParam String email,
-                                                   @RequestParam LocalDate birthDate){
-        Customer customer = new Customer(  identificationType,  identificationNumber,  names,  lastName,
-         email,  birthDate);
-        System.out.println("prueba1");
-            Customer saveItem = customerService.createCustomer(customer);
-            return new ResponseEntity<>(saveItem, HttpStatus.CREATED);
-            
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer){
+        return new ResponseEntity<>(customerService.createCustomer(customer), HttpStatus.CREATED);    
+       
     }
 
 
