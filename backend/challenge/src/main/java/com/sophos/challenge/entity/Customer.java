@@ -20,10 +20,10 @@ public class Customer {
     private String lastName;
     private String email;
     private LocalDate birthDate;
-    private LocalDate createDate;
-    private String createUser;
-    private LocalDate modificationDate;
-    private String modificationUser;
+    private LocalDate createDate= LocalDate.now();
+    private String createUser="Admin";
+    private LocalDate modificationDate= LocalDate.now();
+    private String modificationUser= "Admin";
 
 
     

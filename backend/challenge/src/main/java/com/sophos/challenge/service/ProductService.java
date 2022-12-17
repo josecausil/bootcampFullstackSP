@@ -10,6 +10,6 @@ public interface ProductService {
     
     public List<Product> findAllByCustomer(int id_Customer);
     public Product createProduct(Product product);
-    public Optional<Product> getProductById(int idAccount);
-    public boolean deleteProductById(int id);
+    public Optional<Product> getProductById(int accountNumber);
+  
 }

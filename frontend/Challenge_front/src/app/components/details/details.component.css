@@ -1,0 +1,27 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.Accounts{
+    padding-left: 10%;
+    padding-right: 30%;
+    margin-top: 7%;
+
+}
+
+.conteiner{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 7%;
+    
+    }
+
+.div-1{
+padding: 30px;
+
+}
+
+.div-2{
+    padding: 30px;
+    
+}
+
+

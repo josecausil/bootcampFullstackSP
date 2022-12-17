@@ -1,0 +1,43 @@
+<div class="formularioRegistro">
+    <h2>Clientes registrados</h2>
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Tipo de indetificacion</th>
+      <th>Número de identificación</th>
+      <th>Nombres</th>
+      <th>Apellido</th>
+      <th>Correo electrónico</th>
+      <th>Fecha de nacimiento</th>
+      <th>Fecha de creación</th>
+      <th>Usuario creación</th>
+      <th>Fecha de modificación</th>
+      <th>Usuario modificación</th>
+       </tr>
+  </thead>
+  <tbody  *ngFor="let item of customers">
+    <tr >
+      <td>{{item.identificationType}}</td>
+      <td>{{item.identificationNumber}}</td>
+      <td>{{item.names}}</td>
+      <td>{{item.lastName}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.birthDate}}</td>
+      <td>{{item.createDate}}</td>
+      <td>{{item.createUser}}</td>
+      <td>{{item.modificationDate}}</td>
+      <td>{{item.modificationUser}}</td>
+     </tr>
+    <tr>
+      <th>Opciones</th>
+      <td><button type="button" class="btn btn-primary" (click)="manage(item.idCustomer)">Gestionar</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="delete(item)">Eliminar</button></td>
+      <td><button type="button" class="btn btn-success" (click)="update(item)">Editar</button></td>
+    </tr>
+  
+  </tbody>
+  
+  </table>
+  
+  
+  </div>

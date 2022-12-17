@@ -18,14 +18,7 @@ public class CustomerServiceImplementation implements CustomerService {
 
     @Override
     public Customer createCustomer(Customer customer){
-        boolean result = DateCalculator.adult(customer);
-        if(result==true){
-            return customerRepository.save(customer);
-            
-        }else{
-            //se debe retornar error
-            return null; 
-        }
+          return customerRepository.save(customer);
         
     }
 
@@ -39,9 +32,8 @@ public class CustomerServiceImplementation implements CustomerService {
         return customerRepository.findById(idCustomer);
     }
 
+    @Override 
     public boolean deleteCustomerById(int idCustomer){
-
-        
         return getCustomerById(idCustomer).map(customer ->{
             customerRepository.deleteById(idCustomer);
             return true;

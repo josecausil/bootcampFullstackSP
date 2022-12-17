@@ -11,19 +11,19 @@ import javax.persistence.*;
 public class Product {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAccount;
 
     private String typeAccount;
-    private int accountNumber;
+    private String accountNumber;
     private String accountStatus;
     private int balance;
     private int availableBalance;
     private boolean exemptGMF;
-    private LocalDate createDate;
-    private String createUser;
-    private LocalDate modificationDate;
-    private String modificationUser;
+    private LocalDate createDate= LocalDate.now();
+    private String createUser="Admin";
+    private LocalDate modificationDate=LocalDate.now();
+    private String modificationUser="Admin";
 
     @ManyToOne
     @JoinColumn(name = "idCustomer")
@@ -40,7 +40,7 @@ public class Product {
     //}
 
 
-    public Product(int idAccount, String typeAccount, int accountNumber, String accountStatus, int balance,
+    public Product(int idAccount, String typeAccount, String accountNumber, String accountStatus, int balance,
             int availableBalance, boolean exemptGMF, LocalDate createDate, String createUser, LocalDate modificationDate,
             String modificationUser, Customer customer) {
         this.idAccount = idAccount;
@@ -69,10 +69,10 @@ public class Product {
     public void setTypeAccount(String typeAccount) {
         this.typeAccount = typeAccount;
     }
-    public int getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
     public String getAccountStatus() {
@@ -132,7 +132,15 @@ public class Product {
         this.customer = customer;
     }
 
+    
+    public void consignMoney(int amount) {
+        if(typeAccount.equals("Ahorros")){
+
+        }else if(typeAccount.equals("Corriente")){
+
+        }
 
 
+    }
 
 }

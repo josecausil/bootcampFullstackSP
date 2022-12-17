@@ -1,0 +1,31 @@
+<div class="formularioRegistro">
+  <h2>Realizar transaccion</h2>
+  <form [formGroup]="transactionForm" (ngSubmit)="guardar()" >
+    <div class="form-group">
+        <label>Tipo de movimiento</label>
+        <select type="text"  formControlName="typeTransaction" class="form-control">
+            <option value="Retiro" selected>Retiro</option>
+            <option value="Consignacion">Consignacion</option>
+            <option value="Transferencia">Transferencia</option>
+        </select>
+      </div>
+    <div class="form-group">
+     <label>Cuenta numero: </label>
+      <select type="text" formControlName="product" class="form-control">
+        <option [ngValue]="product" >{{product.accountNumber}}</option>
+     </select>  
+    </div>
+    <div class="form-group">
+        <label>Cantidad</label>
+        <input type="number" formControlName="valueTransfer" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Descripcion</label>
+        <input type="text" formControlName="Description" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="transactionForm.invalid">Guardar</button>
+    
+  </form>
+
+
+</div>

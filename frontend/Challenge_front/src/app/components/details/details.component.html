@@ -1,0 +1,91 @@
+<div class="conteiner">
+
+  <div class="div-1">
+    <h2>Gestion del cliente</h2>
+      <div class="form-group">
+        <label><b>Tipo de ientificacion: </b>{{customer.identificationType}}</label>
+      </div>
+      <div class="form-group">
+        <label><b>Numero de identificacion: </b>{{customer.identificationNumber}}</label>
+      </div>
+      <div class="form-group">
+        <label><b>Nombres: </b>{{customer.names}}</label>
+      </div>
+      <div class="form-group">
+        <label><b>Apellidos: </b>{{customer.lastName}}</label>
+      </div>
+      <div class="form-group">
+        <label><b>Correo electrónico: </b>{{customer.email}}</label>
+      </div>
+      <div>
+        <label class="form-group"><b>Fecha de nacimiento: </b>{{customer.birthDate}}</label>
+      </div>
+  </div>
+  
+  <div class="div-1">
+    <form [formGroup]="productForm" (ngSubmit)="guardar()">
+    <h2>Crear Cuenta bancaria</h2>
+    <label>Id del cliente</label>
+    <select type="text"  formControlName="customer" class="form-control">
+      <option [ngValue]="customer" >{{customer.idCustomer}}</option>
+    </select>
+    
+    <div class="form-group">
+      <label>Tipo de cuenta: </label>
+      <select type="text"  formControlName="typeAccount" class="form-control">
+        <option value="Ahorros" selected>Ahorros</option>
+        <option value="Corriente">Corriente</option>
+         </select>
+    </div>
+    
+    <button type="submit" class="btn btn-primary" >Crear</button>
+   </form>
+    </div>
+</div>
+
+<div class="Accounts">
+  <h2>Cuentas vinculadas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tipo de cuenta</th>
+        <th>Número de cuenta</th>
+        <th>Estado</th>
+        <th>Saldo</th>
+        <th>Saldo disponible</th>
+        <th>Exenta GMP</th>
+        <th>Fecha de creación</th>
+        <th>Usuario creación</th>
+        <th>Fecha de modificación</th>
+        <th>Usuario modificación</th>
+       
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of products">
+      <tr  >
+        <td>{{item.typeAccount}}</td>
+        <td>{{item.accountNumber}}</td>
+        <td>{{item.accountStatus}}</td>
+        <td>{{item.balance}}</td>
+        <td>{{item.availableBalance}}</td>
+        <td>{{item.exemptGMF}}</td>
+        <td>{{item.createDate}}</td>
+        <td>{{item.createUser}}</td>
+        <td>{{item.modificationDate}}</td>
+        <td>{{item.modificationUser}}</td>
+      </tr>
+      <tr>
+        <td><button  type="button" class="btn btn-info btn-sm"  >Estado cuenta</button></td>
+        <td><button type="button" class="btn btn-success btn-sm" (click)="transaction(item.idAccount)">Realiza transaccion</button></td>
+        <td><button type="button" class="btn btn-secondary btn-sm" (click)="status(item)" >Cambiar estado</button></td>
+        <td><button type="button" class="btn btn-danger btn-sm" (click)="cancel(item)">Cancelar producto</button></td>
+      </tr>
+   
+    
+    </tbody>
+    
+    </table>
+    
+
+
+</div>

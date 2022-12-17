@@ -42,13 +42,7 @@ public class ProductServiceImplementation implements ProductService {
 
  
 
-    public boolean deleteProductById(int idAccount){
-        return getProductById(idAccount).map(product ->{
-            productRepository.deleteById(idAccount);
-            return true;
-            
-        }).orElse(false);
-    }
+  
 
 
     
