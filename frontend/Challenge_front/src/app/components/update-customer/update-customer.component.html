@@ -1,1 +1,83 @@
-<p>update-customer works!</p>
+<div class="formularioRegistro">
+  <h3 class="text-center">Edición de empleado</h3>
+  <form (ngSubmit)= "update()" #customerForm = "ngForm">
+    <div class="form-group">
+      <label>Tipo de Identificacion</label>
+      
+      <select type="text" class="form-control" 
+      id = "identificationType"
+      name = "identificationType"
+      [(ngModel)] = "customer.identificationType"  #identificationType = "ngModel">
+        <option value="Cedula" selected>Cédula de ciudadanía</option>
+        <option value="CedulaE">Cédula de extranjería</option>
+        <option value="Pasaporte" >Pasaporte</option>
+        <option value="NIT">NIT</option>
+      </select>  
+   
+    </div>
+
+    <div class="form-group">
+      <label>Numero de identificacion </label>
+      <input type = "number"
+      class="form-control"
+      id = "identificationNumber"
+      [(ngModel)] = "customer.identificationNumber"
+      name = "identificationNumber"
+      required
+      #identificationNumber = "ngModel"
+      >
+
+    </div>
+    <div class="form-group">
+      <label>Nombres </label>
+      <input type = "email"
+      class="form-control"
+      id = "names"
+      [(ngModel)] = "customer.names"
+      name = "names"
+      required
+      #names = "ngModel"
+      >
+     </div>
+
+     <div class="form-group">
+      <label>Apellidos </label>
+      <input type = "text"
+      class="form-control"
+      id = "lastName"
+      [(ngModel)] = "customer.lastName"
+      name = "lastName"
+      required
+      #names = "ngModel"
+      >
+     </div>
+
+     <div class="form-group">
+      <label>Correo electrónico </label>
+      <input type = "email"
+      class="form-control"
+      id = "email"
+      [(ngModel)] = "customer.email"
+      name = "email"
+      required
+      #names = "ngModel"
+      >
+     </div>
+
+     <div class="form-group">
+      <label>Fecha de nacimiento </label>
+      <input type = "date"
+      class="form-control"
+      id = "birthDate"
+      [(ngModel)] = "customer.birthDate"
+      name = "birthDate"
+      required
+      #names = "ngModel"
+      >
+     </div>
+
+    <button class="btn btn-success" [disabled]= "!customerForm.form.valid">Guardar</button>
+  </form>
+
+  <button class="btn btn-danger" (click)="cancel()">Cancelar</button> 
+</div>

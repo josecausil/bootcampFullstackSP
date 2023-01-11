@@ -1,5 +1,6 @@
 package com.sophos.challenge.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sophos.challenge.data.AccountGenerator;
-
+import com.sophos.challenge.data.MovingProcesses;
+import com.sophos.challenge.entity.Customer;
 import com.sophos.challenge.entity.Product;
-
+import com.sophos.challenge.service.CustomerService;
 import com.sophos.challenge.service.ProductService;
 
 @RestController
@@ -28,6 +30,15 @@ public class ProductController {
 
     @Autowired
     ProductService productservice;
+
+    
+    @Autowired
+    CustomerService customerService;
+
+    @GetMapping("allAccounts/{id_Account}")
+    public ResponseEntity<List<Product>> getProduct(@PathVariable("id_Account")int id_Account){
+              return new ResponseEntity<>(productservice.getAllProduct(id_Account), HttpStatus.OK);
+    }
 
     @GetMapping("{id_Customer}")
     public ResponseEntity<List<Product>> getAllProdctByIdCustumer (@PathVariable("id_Customer")int id_Customer){
@@ -81,12 +92,28 @@ public class ProductController {
     @PutMapping("{idAccount}")
     public ResponseEntity<Product> updateProduct(@PathVariable ("idAccount") int idAccount, @RequestBody Product item){
      Optional<Product> ProductData =  productservice.getProductById(idAccount);
-     if(ProductData.isPresent()){
+     if(ProductData.isPresent()){     
         Product _product = ProductData.get();
-        _product.setAccountStatus(item.getAccountStatus());
-        _product.setBalance(item.getBalance());
-        _product.setAvailableBalance(item.getAvailableBalance());
+        if(_product.getAccountStatus().equals("Cancelado")){
+            if(MovingProcesses.statusChange(_product)==true){
+                _product.setAccountStatus(item.getAccountStatus());
+                _product.setModificationDate(LocalDate.now());
+                return new ResponseEntity<>(productservice.createProduct(_product), HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+                
+            }
+        }else{
+            _product.setAccountStatus(item.getAccountStatus());
+            _product.setBalance(item.getBalance());
+            _product.setAvailableBalance(item.getAvailableBalance());
+            _product.setModificationDate(LocalDate.now());
+     
+        
              return new ResponseEntity<>(productservice.createProduct(_product), HttpStatus.OK);
+        }
+       
+      
      }else{
         return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
      }

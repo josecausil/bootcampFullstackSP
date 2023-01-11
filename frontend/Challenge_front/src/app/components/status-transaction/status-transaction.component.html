@@ -1,0 +1,38 @@
+<div class="Accounts">
+    <h2>Estado de la cuenta</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id de la transaccion</th>
+          <th>Fecha de la transaccion</th>
+          <th>Movimiento financiero</th>
+          <th>Descripcion</th>
+          <th>Valor</th>
+          <th>Tipo de movimiento</th>
+          <th>Saldo disponible</th>
+          <th>Saldo</th>
+          
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of transactions">
+        <tr  >
+          <td>{{item.idTransaction}}</td>
+          <td>{{item.transactionDate}}</td>
+          <td>{{item.typeTransaction}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.valueTransfer}}</td>
+          <td>{{item.movementType}}</td>
+          <td>{{item.availableBalance}}</td>
+          <td>{{item.balance}}</td>
+        </tr>
+        
+   
+     
+      
+      </tbody>
+      
+      </table>
+      
+  
+  
+  </div>

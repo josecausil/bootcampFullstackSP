@@ -14,11 +14,11 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idTransaction;
 
-    private LocalDate transactionDate;
+    private LocalDate transactionDate= LocalDate.now();
     private String typeTransaction;
-    private String Description;
+    private String description;
     private int valueTransfer;
-    private String movementType;
+    private String movementType; //credit or debit
     private int balance;
     private int availableBalance;
     private int idReceptionAccount;
@@ -37,7 +37,7 @@ public class Transaction {
         this.idTransaction = idTransaction;
         this.transactionDate = transactionDate;
         this.typeTransaction = typeTransaction;
-        this.Description = description;
+        this.description = description;
         this.valueTransfer = valueTransfer;
         this.movementType = movementType;
         this.balance = balance;
@@ -64,10 +64,10 @@ public class Transaction {
         this.typeTransaction = typeTransaction;
     }
     public String getDescription() {
-        return Description;
+        return description;
     }
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
     public int getValueTransfer() {
         return valueTransfer;

@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sophos.challenge.entity.Product;
 import com.sophos.challenge.entity.Transaction;
+import com.sophos.challenge.repository.ProductRepository;
 import com.sophos.challenge.repository.TransactionRepository;
 
 @Service
@@ -16,6 +18,11 @@ public class TransactionServiceImplementation implements TransactionService {
 
     @Autowired
     TransactionRepository transactionRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
+
 
     @Override
     public List<Transaction> findAllByProduct(int idAccount){
@@ -36,8 +43,22 @@ public class TransactionServiceImplementation implements TransactionService {
 
     }
 
+
+    @Override
+    public Transaction createTransactionTransfer(Transaction transactionOrigin,Transaction transactionDestiny){
+        transactionRepository.save(transactionDestiny);
+        return transactionRepository.save(transactionOrigin);
+
+    }
+
     @Override
     public Optional<Transaction> getTransactionById(int idTransaction) {
         return transactionRepository.findById(idTransaction);
     }
+
+    @Override
+    public Optional<Product> getProductById(int idAccount) {
+        return productRepository.findById(idAccount);
+    }
+
 }

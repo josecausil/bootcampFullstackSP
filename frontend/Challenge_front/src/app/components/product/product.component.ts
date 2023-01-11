@@ -15,10 +15,14 @@ import { Product } from 'src/app/product';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit{
+
+  value: string;
   transactionForm!: FormGroup;
   transaction: any;
   product: Product;
   idAccount: number;
+  products: any;
+  resss: number ;
 
   constructor(
     public router: Router,
@@ -42,19 +46,23 @@ export class ProductComponent implements OnInit{
      
     );
 
+    
+    this.productsService.getAllProdcut(this.idAccount).subscribe(resp =>{
+             this.products = resp;
+    },
+    error => { console.error(error) } 
+    
+    );
+
     this.transactionForm = this.fb.group({
 
       
       idTransaction: [''],
-      transactionDate: [''],
-      typeTransaction: ['', Validators.required],
-      Description: [''],
+      description: [''],
       valueTransfer: ['', Validators.required],
-      movementType: [''],
-      balance: [''],
-      availableBalance: [''],
+      movementType: ['', Validators.required],
       idReceptionAccount: [''],
-      product: ['']
+      product: ['', Validators.required]
 
     });
 
@@ -62,29 +70,50 @@ export class ProductComponent implements OnInit{
       this.transaction
     })
 
-
-
-
-
   }
-
-
-
-
-
 
   guardar(): void {
     this.transactionsService.createTransaction(this.transactionForm.value).subscribe(resp => {
-      this.transactionForm.reset();
-      this.transaction=this.transaction.filter((transaction: { idTransaction: any; })=> resp.idTransaction!==transaction.idTransaction);
-      this.transaction.push(resp);
-      Swal.fire({
-        position: 'top',
-        icon: 'success',
-        title: 'Trabsaccion Exitosa',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      if (resp.movementType==="Transferencia") {
+        this.transactionsService.createTransactionReception(this.transactionForm.value).subscribe(resp2 =>{
+
+          this.transactionForm.reset();
+
+          Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Transaccion Exitosa',
+            showConfirmButton: false,
+            timer: 1500
+          });
+  
+        },
+  
+        error => {
+          console.error(error),
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Transacción no valida',
+            showConfirmButton: false,
+            timer: 1500
+  
+          })
+        }
+        )
+        
+      } else {
+        this.transactionForm.reset();
+
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Transaccion Exitosa',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }  
+   
     },
 
       error => {
@@ -92,7 +121,7 @@ export class ProductComponent implements OnInit{
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'No se puede crear cliente',
+          text: 'Transacción no valida',
           showConfirmButton: false,
           timer: 1500
 
@@ -101,6 +130,20 @@ export class ProductComponent implements OnInit{
 
   }
 
+
+
+  back(idCustomer: any): void{
+      this.router.navigate(['details', (idCustomer)]);
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: 'Proceso cancelado',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    
+  }
+  
 
 
 }

@@ -47,6 +47,8 @@ public class CustomerController {
      Optional<Customer> CustomerData =  customerService.getCustomerById(idCustomer);
      if(CustomerData.isPresent()){
         Customer _customer = CustomerData.get();
+        _customer.setIdentificationType(item.getIdentificationType());
+        _customer.setIdentificationNumber(item.getIdentificationNumber());
         _customer.setNames(item.getNames());
         _customer.setLastName(item.getLastName());
         _customer.setEmail(item.getEmail());

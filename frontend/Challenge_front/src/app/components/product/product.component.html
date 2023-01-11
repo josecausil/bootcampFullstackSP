@@ -1,14 +1,25 @@
 <div class="formularioRegistro">
   <h2>Realizar transaccion</h2>
-  <form [formGroup]="transactionForm" (ngSubmit)="guardar()" >
-    <div class="form-group">
-        <label>Tipo de movimiento</label>
-        <select type="text"  formControlName="typeTransaction" class="form-control">
-            <option value="Retiro" selected>Retiro</option>
-            <option value="Consignacion">Consignacion</option>
-            <option value="Transferencia">Transferencia</option>
-        </select>
+  <form [formGroup]="transactionForm" (ngSubmit)="guardar()"  >
+
+    <label>Tipo de movimiento: </label>
+    <div class="check">
+
+      <div class="form-group">
+        <input type="radio" class="form-check-input" formControlName="movementType" value="Retiro" [(ngModel)]="value" checked>
+        <label class="form-check-label" for="radio1">Retiro</label>
       </div>
+      <div class="form-group" id="div-consing">
+        <input type="radio" class="form-check-input" formControlName="movementType" value="Consignacion" [(ngModel)]="value" >
+        <label class="form-check-label" for="radio2">Consignacion</label>
+      </div>
+      <div class="form-group" id="div-transfer">
+        <input  type="radio" class="form-check-input" formControlName="movementType" value="Transferencia" [(ngModel)]="value">
+        <label class="form-check-label" for="radio2">Transferencia</label>
+      </div>
+  
+    </div>
+   
     <div class="form-group">
      <label>Cuenta numero: </label>
       <select type="text" formControlName="product" class="form-control">
@@ -21,10 +32,16 @@
     </div>
     <div class="form-group">
         <label>Descripcion</label>
-        <input type="text" formControlName="Description" class="form-control">
+        <input type="text" formControlName="description" class="form-control">
+    </div>
+    <div class="form-group" *ngIf="value === 'Transferencia'" >
+      <label>Cuenta Destino</label>
+      <select type="number" formControlName="idReceptionAccount" class="form-control">
+        <option [ngValue]="item.idAccount" *ngFor="let item of products ">{{item.accountNumber}}</option>
+      </select>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="transactionForm.invalid">Guardar</button>
-    
+    <button class="btn btn-danger" (click)="back(product)">Cancelar</button> 
   </form>
 
 

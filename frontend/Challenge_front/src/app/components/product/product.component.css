@@ -9,3 +9,17 @@
 table {
     width: 100%;
   }
+
+  .check {
+    display: flex;
+    align-items: flex-end;
+
+  }
+
+  #div-consing{
+    padding-left: 10%;
+  }
+
+  #div-transfer{
+    padding-left: 10%;
+  }

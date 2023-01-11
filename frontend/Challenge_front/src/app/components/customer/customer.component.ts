@@ -52,9 +52,15 @@ export class CustomerComponent implements OnInit{
 
   manage(idCustomer: any){
     
-    this.router.navigate(['details', (idCustomer)]);
+    this.router.navigate(['customer/details', (idCustomer)]);
    
   }
+
+  update(idCustomer:any) {
+
+    this.router.navigate(['customer/update-customer', (idCustomer)]);
+
+    }
 
   delete(custumer:any) {
     this.custumersService.deleteCustomer(custumer).subscribe(resp => {
@@ -84,8 +90,6 @@ export class CustomerComponent implements OnInit{
     )
   }
 
-  update(customer:any) {
 
-    }
 
 }

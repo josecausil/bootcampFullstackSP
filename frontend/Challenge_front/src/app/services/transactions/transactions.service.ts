@@ -14,6 +14,11 @@ export class TransactionsService {
   public createTransaction (transaction:any): Observable<any>{
     return this.httpClient.post(this.API_SERVER,transaction);
   }
+
+  public createTransactionReception (transaction:any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER+"/reception",transaction);
+  }
+  
   
   public findAllByProduct (idAccount:any): Observable<any>{
     return this.httpClient.get(this.API_SERVER+"/"+(idAccount))

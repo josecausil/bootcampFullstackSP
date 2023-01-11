@@ -14,6 +14,9 @@ export class ProductsService {
   ) { }
 
   
+  public getAllProdcut (idAccount:any): Observable<any>{
+    return this.httpClient.get(this.API_SERVER+"/allAccounts/"+(idAccount));
+  }
 
 
   public createProduct (product:any): Observable<any>{

@@ -4,38 +4,49 @@ import com.sophos.challenge.entity.Product;
 
 public class MovingProcesses {
     
-    public  static Product consignMoney(int amount, Product product) {
+    public  static int consignMoney(int amount, Product product) {
+        int updatedBalance= product.getAvailableBalance() ;
         if(product.getTypeAccount().equals("Ahorros")){
-            product.setAvailableBalance(product.getAvailableBalance()+amount);
-           return product;
+            updatedBalance = product.getAvailableBalance()+amount;
+           return updatedBalance;
         }else if(product.getTypeAccount().equals("Corriente")){
             if((product.getAvailableBalance()+amount)<=0 ){
-                product.setAvailableBalance(product.getAvailableBalance()+amount);
+                updatedBalance= product.getAvailableBalance()+amount;
                 }
-                return product;
+                return updatedBalance;
         }
 
-        return product;
+        return updatedBalance;
     }
 
-    public static Product winthdrawMoney(int amount, Product product){
-
-
+    public static int winthdrawMoney(int amount, Product product){
+        int updatedBalance= product.getAvailableBalance() ;
         if(product.getTypeAccount().equals("Ahorros")){ 
-            if(amount<=product.getAvailableBalance()){
-                product.setAvailableBalance(product.getAvailableBalance()-amount);
-                return product;
+            if(amount<=product.getAvailableBalance()  && product.getAccountStatus().equals("Activa")){
+                updatedBalance= product.getAvailableBalance()-amount;
+                return updatedBalance;
+            
             }
         
-        }else if(product.getTypeAccount().equals("Corriente")){
-            if((product.getAvailableBalance()-amount) <=(-3000000)){
-                product.setAvailableBalance(product.getAvailableBalance()-amount);
+        }else if(product.getTypeAccount().equals("Corriente" )){
+            if((product.getAvailableBalance()-amount) >=(-3000000) && product.getAccountStatus().equals("Activa")){
+                updatedBalance= product.getAvailableBalance()-amount;
                 }
-                return product;
+                return updatedBalance;
         }
 
+        return updatedBalance;
+    }
 
-        return product;
+
+    public static boolean statusChange(Product product){
+        if(product.getBalance()==0){
+            return true;
+        }else{
+            return false;
+
+        }
+        
     }
 
 }

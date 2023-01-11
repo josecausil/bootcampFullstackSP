@@ -11,5 +11,6 @@ public interface ProductService {
     public List<Product> findAllByCustomer(int idCustomer);
     public Product createProduct(Product product);
     public Optional<Product> getProductById(int idAccount);
+    public List<Product> getAllProduct(int id_Account);
   
 }

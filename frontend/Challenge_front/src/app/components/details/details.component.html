@@ -20,6 +20,7 @@
       <div>
         <label class="form-group"><b>Fecha de nacimiento: </b>{{customer.birthDate}}</label>
       </div>
+      <button class="btn btn-danger" (click)="back()">Atras</button> 
   </div>
   
   <div class="div-1">
@@ -74,11 +75,12 @@
         <td>{{item.modificationDate}}</td>
         <td>{{item.modificationUser}}</td>
       </tr>
+      
       <tr>
-        <td><button  type="button" class="btn btn-info btn-sm"  >Estado cuenta</button></td>
-        <td><button type="button" class="btn btn-success btn-sm" (click)="transaction(item.idAccount)">Realiza transaccion</button></td>
-        <td><button type="button" class="btn btn-secondary btn-sm" (click)="status(item)" >Cambiar estado</button></td>
-        <td><button type="button" class="btn btn-danger btn-sm" (click)="cancel(item)">Cancelar producto</button></td>
+        <td><button  type="button" class="btn btn-info btn-sm" (click)="statusTransaction(item.idAccount)" >Estado cuenta</button></td>
+        <td ><button type="button" *ngIf="item.accountStatus!='Cancelado'" class="btn btn-success btn-sm" (click)="transaction(item.idAccount)">Realiza transaccion</button></td>
+        <td><button type="button" *ngIf="item.accountStatus!='Cancelado'" class="btn btn-secondary btn-sm" (click)="status(item)" >Cambiar estado</button></td>
+        <td><button type="button" *ngIf="item.accountStatus!='Cancelado'" class="btn btn-danger btn-sm" (click)="cancel(item)">Cancelar producto</button></td>
       </tr>
    
     

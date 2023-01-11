@@ -106,6 +106,8 @@ status(product:any){
   }
 
   this.productsService.updateProduct(product).subscribe(resp =>{
+    this.products=this.products.filter((products: { idAccount: any; })=> resp.idAccount!==products.idAccount);
+   this.products.push(resp);
 
 Swal.fire({
   position: 'top',
@@ -176,6 +178,16 @@ cancel(product:any){
 
 
 
+}
+
+statusTransaction(idAccount:any){
+  this.router.navigate(['/status-transaction', (idAccount)]);
+}
+
+back(): void{
+  this.router.navigate(['/customer']);
+
+  
 }
 
 }

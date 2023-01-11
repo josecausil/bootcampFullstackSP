@@ -41,6 +41,19 @@ public class ProductServiceImplementation implements ProductService {
     }
 
  
+    @Override
+    public List<Product> getAllProduct(int id_Account){
+        List<Product> productResponse = new ArrayList<>();
+        List<Product> product = productRepository.findAll();
+        for (int i=0; i< product.size();i++) {
+            if((product.get(i).getAccountStatus().equals("Activa") || product.get(i).getAccountStatus().equals("Inactiva")) && product.get(i).getIdAccount() !=  id_Account){
+                productResponse.add(product.get(i));
+
+            }
+            
+        }
+        return productResponse;
+    }
 
   
 

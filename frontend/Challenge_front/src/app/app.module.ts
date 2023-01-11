@@ -15,6 +15,8 @@ import { NavmenComponent } from './components/navmen/navmen.component';
 import { ComponentsComponent } from './components/components.component';
 import { DetailsComponent } from './components/details/details.component';
 import { UpdateCustomerComponent } from './components/update-customer/update-customer.component';
+import { StatusTransactionComponent } from './components/status-transaction/status-transaction.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,10 @@ import { UpdateCustomerComponent } from './components/update-customer/update-cus
     NavmenComponent,
     ComponentsComponent,
     DetailsComponent,
-    UpdateCustomerComponent
+    UpdateCustomerComponent,
+    StatusTransactionComponent,
+    ProfileComponent,
+
   ],
   imports: [
     BrowserModule,
