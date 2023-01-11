@@ -8,8 +8,8 @@ import com.sophos.challenge.entity.Product;
 public interface ProductService {
    
     
-    public List<Product> findAllByCustomer(int id_Customer);
+    public List<Product> findAllByCustomer(int idCustomer);
     public Product createProduct(Product product);
-    public Optional<Product> getProductById(int accountNumber);
+    public Optional<Product> getProductById(int idAccount);
   
 }

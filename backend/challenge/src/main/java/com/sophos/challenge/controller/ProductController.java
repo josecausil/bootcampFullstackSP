@@ -3,7 +3,7 @@ package com.sophos.challenge.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.security.auth.login.AccountException;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sophos.challenge.data.AccountGenerator;
-import com.sophos.challenge.data.DateCalculator;
+
 import com.sophos.challenge.entity.Product;
-import com.sophos.challenge.service.CustomerService;
+
 import com.sophos.challenge.service.ProductService;
 
 @RestController
@@ -34,6 +34,13 @@ public class ProductController {
         return ResponseEntity.ok(productservice.findAllByCustomer(id_Customer));
     }
 
+    @GetMapping("account/{id_Account}")
+    public ResponseEntity<Product> getProductById(@PathVariable("id_Account")int id_Account){
+        return productservice.getProductById(id_Account)
+                .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product){
 
@@ -45,12 +52,14 @@ public class ProductController {
                 if(typeaccount.equals("Ahorros")){
                     String AccountNumber= AccountGenerator.generateNumber("Ahorros");
                     String setAccount = "4"+AccountNumber;
+                    product.setAccountStatus("Activa");
                     product.setAccountNumber(setAccount);
                     product.setIdAccount(Integer.parseInt(AccountNumber));
 
                  }else if(typeaccount.equals("Corriente")){
                     String AccountNumber= AccountGenerator.generateNumber("Corriente");
                     String setAccount = "2"+AccountNumber;
+                    product.setAccountStatus("Inactiva");
                     product.setAccountNumber(setAccount);
                     product.setIdAccount(Integer.parseInt(AccountNumber));
                 }

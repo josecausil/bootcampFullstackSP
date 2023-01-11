@@ -2,6 +2,7 @@ package com.sophos.challenge.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,14 @@ public class TransactionServiceImplementation implements TransactionService {
         return transactionResponse;
     }
 
+    @Override
     public Transaction createTransaction(Transaction transaction){
         return transactionRepository.save(transaction);
 
+    }
+
+    @Override
+    public Optional<Transaction> getTransactionById(int idTransaction) {
+        return transactionRepository.findById(idTransaction);
     }
 }

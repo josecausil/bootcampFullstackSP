@@ -66,7 +66,7 @@ public class Customer {
         this.modificationUser = modificationUser;
     }
     
-    @Column(name = "id_customer", nullable = false)
+
     public int getIdCustomer() {
         return idCustomer;
     }
@@ -74,7 +74,7 @@ public class Customer {
         this.idCustomer = idCustomer;
     }
 
-    @Column(name = "identification_type", nullable = false)
+
     public String getIdentificationType() {
         return identificationType;
     }
@@ -82,7 +82,7 @@ public class Customer {
         this.identificationType = identificationType;
     }
 
-    @Column(name = "identification_number", nullable = false)
+
     public int getIdentificationNumber() {
         return identificationNumber;
     }
@@ -90,7 +90,7 @@ public class Customer {
         this.identificationNumber = identificationNumber;
     }
 
-    @Column(name = "names", nullable = false)
+
     public String getNames() {
         return names;
     }
@@ -98,7 +98,6 @@ public class Customer {
         this.names = names;
     }
 
-    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -106,7 +105,7 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    @Column(name = "email", nullable = false)
+
     public String getEmail() {
         return email;
     }
@@ -114,7 +113,7 @@ public class Customer {
         this.email = email;
     }
 
-    @Column(name = "birth_date", nullable = false)
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -122,7 +121,7 @@ public class Customer {
         this.birthDate = birthDate;
     }
 
-    @Column(name = "create_date", nullable = false)
+   
     public LocalDate getCreateDate() {
         return createDate;
     }
@@ -130,7 +129,7 @@ public class Customer {
         this.createDate = createDate;
     }
 
-    @Column(name = "create_user", nullable = false)
+    
     public String getCreateUser() {
         return createUser;
     }
@@ -138,7 +137,7 @@ public class Customer {
         this.createUser = createUser;
     }
 
-    @Column(name = "modification_date", nullable = false)
+   
     public LocalDate getModificationDate() {
         return modificationDate;
     }
@@ -146,7 +145,7 @@ public class Customer {
         this.modificationDate = modificationDate;
     }
 
-    @Column(name = "modification_user", nullable = false)
+  
     public String getModificationUser() {
         return modificationUser;
     }

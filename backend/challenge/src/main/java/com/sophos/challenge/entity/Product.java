@@ -133,14 +133,6 @@ public class Product {
     }
 
     
-    public void consignMoney(int amount) {
-        if(typeAccount.equals("Ahorros")){
-
-        }else if(typeAccount.equals("Corriente")){
-
-        }
-
-
-    }
+  
 
 }

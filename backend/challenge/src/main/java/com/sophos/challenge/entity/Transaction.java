@@ -21,6 +21,7 @@ public class Transaction {
     private String movementType;
     private int balance;
     private int availableBalance;
+    private int idReceptionAccount;
 
     @ManyToOne
     @JoinColumn(name = "idAccount")
@@ -32,15 +33,16 @@ public class Transaction {
     }
     
     public Transaction(int idTransaction, LocalDate transactionDate, String typeTransaction, String description,
-            int valueTransfer, String movementType, int balance, int availableBalance, Product product) {
+            int valueTransfer, String movementType, int balance, int availableBalance, int idReceptionAccount, Product product) {
         this.idTransaction = idTransaction;
         this.transactionDate = transactionDate;
         this.typeTransaction = typeTransaction;
-        Description = description;
+        this.Description = description;
         this.valueTransfer = valueTransfer;
         this.movementType = movementType;
         this.balance = balance;
         this.availableBalance = availableBalance;
+        this.idReceptionAccount= idReceptionAccount;
         this.product = product;
     }
     public int getIdTransaction() {
@@ -100,6 +102,15 @@ public class Transaction {
         this.product = product;
     }
 
+    public int getIdReceptionAccount() {
+        return idReceptionAccount;
+    }
 
+    public void setIdReceptionAccount(int idReceptionAccount) {
+        this.idReceptionAccount = idReceptionAccount;
+    }
+
+
+    
     
 }

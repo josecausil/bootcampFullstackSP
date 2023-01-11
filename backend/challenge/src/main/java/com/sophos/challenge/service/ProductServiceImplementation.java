@@ -18,11 +18,11 @@ public class ProductServiceImplementation implements ProductService {
 
 
     @Override
-    public List<Product> findAllByCustomer(int id_Customer){
+    public List<Product> findAllByCustomer(int idCustomer){
         List<Product> productResponse =new ArrayList<>();
         List<Product> product = productRepository.findAll();
         for(int i=0;i<product.size();i++){
-            if(product.get(i).getCustomer().getIdCustomer()==id_Customer){
+            if(product.get(i).getCustomer().getIdCustomer()==idCustomer){
                 productResponse.add(product.get(i));
             }
         }
